@@ -5,6 +5,7 @@ Simple but **end-user and developer friendly** webshop engine built on top of Sy
 This is official repository.
 
 **Sylius is still under heavy development so many things will be broken.**
+
 If you want to see how the bundles work check [Sylius-Sandbox](http://github.com/Sylius/Sylius-Sandbox) application.
 
 Quick installation.
@@ -13,7 +14,7 @@ Quick installation.
 Clone this repository with this command or download latest release from github.
 
 ``` bash
-$ git clone http://github.com/Sylius/Sylius /path/to/Sylius
+$ git clone http://github.com/Sylius/Sylius.git /path/to/Sylius
 ```
 
 Open `app/config/container/includes/parameters.yml.dist`, set your values and save as `parameters.yml`.
