@@ -17,7 +17,7 @@ Clone this repository with this command or download latest release from github.
 $ git clone http://github.com/Sylius/Sylius.git /path/to/Sylius
 ```
 
-Open `app/config/container/includes/parameters.yml.dist`, set your values and save as `parameters.yml`.
+Open `sylius/config/container/includes/parameters.yml.dist`, set your values and save as `parameters.yml`.
 Run the vendors script.
 
 ``` bash
@@ -27,7 +27,7 @@ $ php ./tools/vendors install
 Generate database schema.
 
 ``` bash
-$ php app/tools/console doctrine:schema:create
+$ php sylius/tools/console doctrine:schema:create
 ```
 
 Open up ``/path/to/Sylius/public`` in your browser and play with the application.
