@@ -1,0 +1,6 @@
+# This file is part of Sylius package.
+# (c) Paweł Jędrzejewski
+
+menu.dashboard: "Dashboard"
+menu.assortment: "Manage assortment"
+menu.themes: "Theming"

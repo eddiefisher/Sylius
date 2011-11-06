@@ -1,0 +1,111 @@
+# This file is part of the Sylius package.
+# (c) Paweł Jędrzejewski
+
+imports:
+    - { resource: includes/parameters.yml }
+    - { resource: includes/security.yml }
+    - { resource: includes/database.yml }
+
+framework:
+    default_locale: %locale%
+    form: ~
+    charset:       UTF-8
+    secret: %secret%
+    csrf_protection:
+        enabled: true
+    router:        { resource: "%kernel.root_dir%/config/routing/base.yml" }
+    validation:    { enabled: true }
+    translator:    { fallback: %locale% }
+    templating:    { engines: ['twig', 'php'] }
+    session:
+        name: SYLIUS_SESSION
+        lifetime: 72000
+        auto_start:     true
+
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug% 
+    
+swiftmailer:
+    transport: %mailer.transport%
+    host:      %mailer.host%
+    username:  %mailer.user%
+    password:  %mailer.password%
+
+sylius_assortment:
+    driver: ORM
+    classes:
+        model:
+            product:  Sylius\Bundle\CoreBundle\Entity\Product
+        form:
+            type:
+                product: Sylius\Bundle\CoreBundle\Form\Type\ProductFormType
+
+sylius_catalog:
+    driver: ORM
+    catalogs:
+        assortment:
+            mode: S
+            property: "products"
+            sorter: sylius_assortment.sorter
+            classes:
+                model: Sylius\Bundle\CoreBundle\Entity\Category
+            templates:
+                backend:
+                    list: SyliusAssortmentBundle:Backend/Category:list.html.twig
+                    show: SyliusAssortmentBundle:Backend/Category:show.html.twig
+                    create: SyliusAssortmentBundle:Backend/Category:create.html.twig
+                    update: SyliusAssortmentBundle:Backend/Category:update.html.twig
+                frontend:
+                    list: SyliusAssortmentBundle:Frontend/Category:list.html.twig
+                    show: SyliusAssortmentBundle:Frontend/Category:show.html.twig
+                    
+sylius_newsletter:
+    driver: ORM
+    classes:
+        model:
+            newsletter: Sylius\Bundle\NewsletterBundle\Entity\DefaultNewsletter
+            subscriber: Sylius\Bundle\NewsletterBundle\Entity\DefaultSubscriber
+    extensions:
+        confirmation:
+            enabled: true
+            options:
+                email:
+                    from: no-reply@example.com
+                    subject: "Confirm your subscription on example.com!"
+                    template: SyliusNewsletterBundle:Confirmation:email.html.twig
+                    
+sylius_cart:
+    driver: ORM
+    engine: twig
+    operator: sylius_core.cart.operator
+    classes:
+        model:
+            cart: Sylius\Bundle\CoreBundle\Entity\Cart
+            item: Sylius\Bundle\CoreBundle\Entity\CartItem
+        form:
+           type:
+               item: Sylius\Bundle\CoreBundle\Form\Type\CartItemType
+
+liip_theme:
+        themes: ~
+        active_theme: ~
+                            
+sylius_theming:
+    driver: ORM
+    classes:
+        model:
+            theme: Sylius\Bundle\ThemingBundle\Entity\Theme
+                
+sylius_sales:
+    driver: ORM
+    statuses:
+        - "status.0"
+        - "status.1"
+        - "status.2"
+    classes:
+        model:
+            order: Sylius\Bundle\CoreBundle\Entity\Order
+        form:
+            type:
+                order: Sylius\Bundle\CoreBundle\Form\Type\OrderFormType

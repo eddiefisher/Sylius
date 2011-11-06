@@ -1,0 +1,7 @@
+sylius_core_frontend:
+    pattern: /
+    defaults: { _controller: sylius_core.controller.index:indexAction }
+
+sylius_core_backend:
+    pattern: /administration
+    defaults: { _controller: sylius_core.controller.backend:indexAction }

@@ -1,0 +1,5 @@
+# This file is part of Sylius package.
+# (c) Paweł Jędrzejewski
+
+menu.dashboard: "Kokpit"
+menu.assortment: "Zarządzaj asortymentem"
