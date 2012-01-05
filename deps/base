@@ -54,10 +54,14 @@
 [SyliusCatalogBundle]
     git=http://github.com/Sylius/SyliusCatalogBundle.git
     target=bundles/Sylius/Bundle/CatalogBundle
-    
-[SyliusNewsletterBundle]
-    git=http://github.com/Sylius/SyliusNewsletterBundle.git
-    target=bundles/Sylius/Bundle/NewsletterBundle
+
+[SyliusGuardBundle]
+    git=http://github.com/Sylius/SyliusGuardBundle.git
+    target=bundles/Sylius/Bundle/GuardBundle
+
+[SyliusAddressingBundle]
+    git=http://github.com/Sylius/SyliusAddressingBundle.git
+    target=bundles/Sylius/Bundle/AddressingBundle
 
 [SyliusCartBundle]
     git=http://github.com/Sylius/SyliusCartBundle.git
@@ -70,3 +74,15 @@
 [SyliusSalesBundle]
     git=http://github.com/Sylius/SyliusSalesBundle.git
     target=bundles/Sylius/Bundle/SalesBundle
+    
+[SyliusPluginsBundle]
+    git=http://github.com/Sylius/SyliusPluginsBundle.git
+    target=bundles/Sylius/Bundle/PluginsBundle
+    
+[SyliusInstallerBundle]
+    git=http://github.com/Sylius/SyliusInstallerBundle.git
+    target=bundles/Sylius/Bundle/InstallerBundle
+    
+[Fluiderrro]
+    git=http://github.com/Sylius/Fluiderrro.git
+    target=../sylius/Resources/themes/Fluiderrro

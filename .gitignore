@@ -1,0 +1,11 @@
+public/bundles/
+sylius/phpunit.xml
+sylius/cache/*
+sylius/logs/*
+.buildpath
+.project
+.settings/
+vendor/
+composer.phar
+composer.lock
+

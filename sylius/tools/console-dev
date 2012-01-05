@@ -15,6 +15,6 @@ require_once __DIR__.'/../SyliusKernel.php';
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-$kernel = new SyliusKernel('development', true);
+$kernel = new \Sylius\SyliusKernel('development', true);
 $application = new Application($kernel);
 $application->run();

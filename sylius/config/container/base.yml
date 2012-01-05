@@ -1,24 +1,24 @@
-# This file is part of the Sylius package.
+# This file is part of the Sylius sandbox application.
 # (c) Paweł Jędrzejewski
 
 imports:
-    - { resource: includes/parameters.yml }
-    - { resource: includes/security.yml }
-    - { resource: includes/database.yml }
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: database.yml }
 
 framework:
-    default_locale: %locale%
+    default_locale: %sylius.locale%
     form: ~
     charset:       UTF-8
-    secret: %secret%
+    secret: %sylius.secret%
     csrf_protection:
         enabled: true
     router:        { resource: "%kernel.root_dir%/config/routing/base.yml" }
     validation:    { enabled: true }
-    translator:    { fallback: %locale% }
+    translator:    { fallback: %sylius.locale% }
     templating:    { engines: ['twig', 'php'] }
     session:
-        name: SYLIUS_SESSION
+        name: SYLIUS_SANDBOX_SESSION
         lifetime: 72000
         auto_start:     true
 
@@ -27,19 +27,19 @@ twig:
     strict_variables: %kernel.debug% 
     
 swiftmailer:
-    transport: %mailer.transport%
-    host:      %mailer.host%
-    username:  %mailer.user%
-    password:  %mailer.password%
+    transport: %sylius.mailer.transport%
+    host:      %sylius.mailer.host%
+    username:  %sylius.mailer.user%
+    password:  %sylius.mailer.password%
 
 sylius_assortment:
     driver: ORM
     classes:
         model:
-            product:  Sylius\Bundle\CoreBundle\Entity\Product
+            product:  Sylius\Sandbox\Bundle\AssortmentBundle\Entity\Product
         form:
             type:
-                product: Sylius\Bundle\CoreBundle\Form\Type\ProductFormType
+                product: Sylius\Sandbox\Bundle\AssortmentBundle\Form\Type\ProductFormType
 
 sylius_catalog:
     driver: ORM
@@ -47,33 +47,18 @@ sylius_catalog:
         assortment:
             mode: S
             property: "products"
-            sorter: sylius_assortment.sorter
+            sorter: sylius_assortment.sorter.product
             classes:
-                model: Sylius\Bundle\CoreBundle\Entity\Category
+                model: Sylius\Sandbox\Bundle\AssortmentBundle\Entity\Category
             templates:
                 backend:
-                    list: SyliusAssortmentBundle:Backend/Category:list.html.twig
-                    show: SyliusAssortmentBundle:Backend/Category:show.html.twig
-                    create: SyliusAssortmentBundle:Backend/Category:create.html.twig
-                    update: SyliusAssortmentBundle:Backend/Category:update.html.twig
+                    list: SandboxAssortmentBundle:Backend/Category:list.html.twig
+                    show: SandboxAssortmentBundle:Backend/Category:show.html.twig
+                    create: SandboxAssortmentBundle:Backend/Category:create.html.twig
+                    update: SandboxAssortmentBundle:Backend/Category:update.html.twig
                 frontend:
-                    list: SyliusAssortmentBundle:Frontend/Category:list.html.twig
-                    show: SyliusAssortmentBundle:Frontend/Category:show.html.twig
-                    
-sylius_newsletter:
-    driver: ORM
-    classes:
-        model:
-            newsletter: Sylius\Bundle\NewsletterBundle\Entity\DefaultNewsletter
-            subscriber: Sylius\Bundle\NewsletterBundle\Entity\DefaultSubscriber
-    extensions:
-        confirmation:
-            enabled: true
-            options:
-                email:
-                    from: no-reply@example.com
-                    subject: "Confirm your subscription on example.com!"
-                    template: SyliusNewsletterBundle:Confirmation:email.html.twig
+                    list: SandboxAssortmentBundle:Frontend/Category:list.html.twig
+                    show: SandboxAssortmentBundle:Frontend/Category:show.html.twig
                     
 sylius_cart:
     driver: ORM
@@ -81,11 +66,11 @@ sylius_cart:
     operator: sylius_core.cart.operator
     classes:
         model:
-            cart: Sylius\Bundle\CoreBundle\Entity\Cart
-            item: Sylius\Bundle\CoreBundle\Entity\CartItem
+            cart: Sylius\Sandbox\Bundle\CartBundle\Entity\Cart
+            item: Sylius\Sandbox\Bundle\CartBundle\Entity\Item
         form:
            type:
-               item: Sylius\Bundle\CoreBundle\Form\Type\CartItemType
+               item: Sylius\Sandbox\Bundle\CartBundle\Form\Type\ItemType
 
 liip_theme:
         themes: ~
@@ -105,7 +90,13 @@ sylius_sales:
         - "status.2"
     classes:
         model:
-            order: Sylius\Bundle\CoreBundle\Entity\Order
+            order: Sylius\Sandbox\Bundle\SalesBundle\Entity\Order
         form:
             type:
-                order: Sylius\Bundle\CoreBundle\Form\Type\OrderFormType
+                order: Sylius\Sandbox\Bundle\SalesBundle\Form\Type\OrderFormType
+                
+sylius_plugins:
+    driver: ORM
+    classes:
+        model:
+            plugin: Sylius\Bundle\PluginsBundle\Entity\Plugin

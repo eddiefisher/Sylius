@@ -1,0 +1,15 @@
+# This file is part of the Sylius sandbox application.
+# (c) Paweł Jędrzejewski
+
+doctrine:
+    dbal:
+        driver:   %sylius.database.driver%
+        host:     %sylius.database.host%
+        port:     %sylius.database.port%
+        dbname:   %sylius.database.name%
+        user:     %sylius.database.user%
+        password: %sylius.database.password%
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true

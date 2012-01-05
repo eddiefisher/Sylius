@@ -18,23 +18,23 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 $loader = new UniversalClassLoader();
 
 $loader->registerNamespaces(array(
-	'Sylius'						      => array( __DIR__.'/../vendor/bundles', __DIR__.'/../src'),
+	'Sylius'                          => array( __DIR__.'/../vendor/bundles', __DIR__.'/../src'),
 
-    'Symfony'         					  => __DIR__.'/../vendor/libraries/symfony/src',
-    'Pagerfanta'						  => __DIR__.'/../vendor/libraries/pagerfanta/src',
-    'Doctrine\\Common'                    => __DIR__.'/../vendor/libraries/doctrine-common/lib',
-    'Doctrine\\DBAL'					  => __DIR__.'/../vendor/libraries/doctrine-dbal/lib',
-    'Doctrine'							  => __DIR__.'/../vendor/libraries/doctrine/lib',
-	'Monolog'       				      => __DIR__.'/../vendor/libraries/monolog/src',
-    'Metadata'       					  => __DIR__.'/../vendor/libraries/metadata/src',
+    'Symfony'                         => __DIR__.'/../vendor/libraries/symfony/src',
+    'Pagerfanta'                      => __DIR__.'/../vendor/libraries/pagerfanta/src',
+    'Doctrine\\Common'                => __DIR__.'/../vendor/libraries/doctrine-common/lib',
+    'Doctrine\\DBAL'                  => __DIR__.'/../vendor/libraries/doctrine-dbal/lib',
+    'Doctrine'                        => __DIR__.'/../vendor/libraries/doctrine/lib',
+	'Monolog'                         => __DIR__.'/../vendor/libraries/monolog/src',
+    'Metadata'                        => __DIR__.'/../vendor/libraries/metadata/src',
 
-    'Liip'								  => __DIR__.'/../vendor/bundles',
-    'WhiteOctober\PagerfantaBundle'       => __DIR__.'/../vendor/bundles',
+    'Liip'                            => __DIR__.'/../vendor/bundles',
+    'WhiteOctober\PagerfantaBundle'   => __DIR__.'/../vendor/bundles',
 ));
 
 $loader->registerPrefixes(array(
-    'Twig_Extensions_'                    => __DIR__.'/../vendor/libraries/twig-extensions/lib',
-    'Twig_'                               => __DIR__.'/../vendor/libraries/twig/lib',
+    'Twig_Extensions_'                => __DIR__.'/../vendor/libraries/twig-extensions/lib',
+    'Twig_'                           => __DIR__.'/../vendor/libraries/twig/lib',
 ));
 
 // Swiftmailer.

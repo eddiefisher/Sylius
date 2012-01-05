@@ -17,11 +17,11 @@ use Symfony\Component\HttpFoundation\Request;
  */
 
 // Require autoload.
-require_once __DIR__.'/../app/autoload.php';
+require_once __DIR__.'/../sylius/autoload.php';
 
 // Require kernel.
-require_once __DIR__.'/../app/SyliusKernel.php';
+require_once __DIR__.'/../sylius/SyliusKernel.php';
 
 // Initialize kernel and run the application.
-$kernel = new SyliusKernel('production', false);
+$kernel = new \Sylius\SyliusKernel('production', false);
 $kernel->handle(Request::createFromGlobals())->send();

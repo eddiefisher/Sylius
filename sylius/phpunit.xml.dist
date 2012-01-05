@@ -10,7 +10,8 @@
     processIsolation            = "false"
     stopOnFailure               = "false"
     syntaxCheck                 = "false"
-    bootstrap                   = "bootstrap.php.cache" >
+    bootstrap                   = "autoload.php"
+>
 
     <testsuites>
         <testsuite name="Sylius test suite">

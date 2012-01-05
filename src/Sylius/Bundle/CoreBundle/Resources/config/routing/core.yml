@@ -1,7 +1,43 @@
 sylius_core_frontend:
     pattern: /
-    defaults: { _controller: sylius_core.controller.index:indexAction }
+    defaults: { _controller: sylius_core.controller.frontend:indexAction }
 
 sylius_core_backend:
     pattern: /administration
     defaults: { _controller: sylius_core.controller.backend:indexAction }
+    
+sylius_assortment_backend_product:
+    resource: @SyliusAssortmentBundle/Resources/config/routing/backend/product.yml
+    prefix: /administration/assortment/products
+
+sylius_assortment_product:
+    resource: @SyliusAssortmentBundle/Resources/config/routing/frontend/product.yml
+    prefix: /assortment/products
+    
+sylius_cart:
+    resource: @SyliusCartBundle/Resources/config/routing/frontend/cart.yml
+    
+sylius_catalog_backend_category:
+    resource: @SyliusCatalogBundle/Resources/config/routing/backend/category.yml
+    prefix: /administration
+    
+sylius_catalog_category:
+    resource: @SyliusCatalogBundle/Resources/config/routing/frontend/category.yml
+
+sylius_installer_setup:
+    resource: @SyliusInstallerBundle/Resources/config/routing/installer.yml
+    
+sylius_plugins_backend_plugin:
+    resource: @SyliusPluginsBundle/Resources/config/routing/backend/plugin.yml
+    prefix: /administration/plugins
+    
+sylius_sales_backend_order:
+    resource: @SyliusSalesBundle/Resources/config/routing/backend/order.yml
+    prefix: /administration/orders
+    
+sylius_sales_order:
+    resource: @SyliusSalesBundle/Resources/config/routing/frontend/order.yml
+    
+sylius_theming_backend_theme:
+    resource: @SyliusThemingBundle/Resources/config/routing/backend/theme.yml
+    prefix: /administration/themes

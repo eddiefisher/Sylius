@@ -16,11 +16,23 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>
-		<parameter key="sylius.controller.backend.dashboard.class">Sylius\Bundle\CoreBundle\Controller\Backend\DashboardController</parameter>
+		<parameter key="sylius_core.controller.frontend.class">Sylius\Bundle\CoreBundle\Controller\FrontendController</parameter>
+		<parameter key="sylius_core.controller.backend.class">Sylius\Bundle\CoreBundle\Controller\BackendController</parameter>
+		<parameter key="sylius_core.controller.setup.class">Sylius\Bundle\CoreBundle\Controller\SetupController</parameter>
 	</parameters>
 
     <services>
-        <service id="sylius.controller.backend.dashboard" class="%sylius.controller.backend.dashboard.class%">
+        <service id="sylius_core.controller.frontend" class="%sylius_core.controller.frontend.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="sylius_core.controller.backend" class="%sylius_core.controller.backend.class%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="sylius_core.controller.setup" class="%sylius_core.controller.setup.class%">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
