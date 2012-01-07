@@ -2,6 +2,7 @@ public/bundles/
 sylius/phpunit.xml
 sylius/cache/*
 sylius/logs/*
+sylius/Resources/themes/Fluiderrro/*
 .buildpath
 .project
 .settings/
