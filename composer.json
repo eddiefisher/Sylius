@@ -1,21 +1,29 @@
 {
     "require": {
-        "symfony/symfony": "2.*",
-        "twig/twig": "1.*",
+        "php":             ">=5.3.2",
+        "symfony/symfony": ">=2.0.7,<2.1.0-dev",
+        "doctrine/orm":    ">=2.1.0,<2.2.0-dev",
         "twig/extensions": "*",
-        "monolog/monolog": "1.*",
-        "doctrine/orm": "*",
-        "metadata/metadata": "*",
-        "swiftmailer/swiftmailer": "4.1.*",
-        "stof/doctrine-extensions-bundle": "*",
+
+        "symfony/assetic-bundle":          "*",
         "white-october/pagerfanta-bundle": "*",
+
+        "sylius/addressing-bundle": "*",
         "sylius/assortment-bundle": "*",
-        "sylius/catalog-bundle": "*",
-        "sylius/newsletter-bundle": "*",
-        "sylius/cart-bundle": "*",
-        "sylius/theming-bundle": "*",
-        "sylius/sales-bundle": "*",
-        "sylius/plugins-bundle": "*",
-        "sylius/guard-bundle": "*"
+        "sylius/catalog-bundle":    "*",
+        "sylius/cart-bundle":       "*",
+        "sylius/theming-bundle":    "*",
+        "sylius/sales-bundle":      "*",
+        "sylius/plugins-bundle":    "*",
+        "sylius/installer-bundle":  "*",
+        "sylius/guard-bundle":      "*",
+        "sylius/pricing-bundle":    "*",
+        "sylius/checkouts-bundle":  "*",
+    },
+
+    "autoload": {
+        "psr-0": {
+            "Sylius": "src/"
+        }
     }
 }
