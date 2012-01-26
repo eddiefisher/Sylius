@@ -1,13 +1,20 @@
-# This file is part of the Sylius sandbox application.
+# This file is part of the Sylius package.
 # (c) Paweł Jędrzejewski
 
 security:
     providers:
         sylius_guard_provider:
+            chain:
+                providers: [sylius_guard_provider.memory, sylius_guard_provider.database]
+        sylius_guard_provider.memory:
             memory:
                 users:
-                    administrator:  { password: 79fb86e161e6bee2f14740099c4bee8247926999, roles: 'ROLE_SYLIUS_ADMIN' }
+                    %sylius.security.login%:  { password: %syilus.security.password %, roles: 'ROLE_SYLIUS_ADMIN' }
+        sylius_guard_provider.database:
+            id: sylius_guard.security.provider
     encoders:
+        Sylius\Bundle\CoreBundle\Entity\User:
+            id: sylius_guard.security.encoder
         Symfony\Component\Security\Core\User\User:
             algorithm:   sha1
             iterations: 1
@@ -20,7 +27,7 @@ security:
                 check_path: /login
                 use_referer: true
             remember_me:
-                key: eUodAjYEzDza72
+                key: %sylius.secret%
                 name: SYLIUS_REMEMBER_ME
                 lifetime: 31536000
                 always_remember_me: true
