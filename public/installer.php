@@ -31,7 +31,7 @@ EOF;
 if (!file_exists('../vendor')) {
     $issues[] = <<<EOF
         If you have cloned or downloaded Sylius without vendors, please install them first. <br />
-    	You can also download the package with vendors from <a href="http://sylius.org">Sylius.org website</a>.
+        You can also download the package with vendors from <a href="http://sylius.org">Sylius.org website</a>.
 EOF;
 }
 
@@ -85,27 +85,27 @@ if (count($issues) > 0):
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
         <script type="text/javascript" src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-dropdown.js"></script>
-        
+
         <style type="text/css">
             html, body {
                 background-color: #eee;
             }
-            
+
             body {
                 padding-top: 20px;
             }
-            
+
             .topbar-wrapper {
               position: relative;
               height: 40px;
             }
-            
+
             .topbar-wrapper .topbar {
               position: absolute;
               margin: 0 -20px;
-            
+
             }
-            
+
             .topbar-wrapper .topbar .topbar-inner {
               padding-left: 20px;
               padding-right: 20px;
@@ -113,15 +113,15 @@ if (count($issues) > 0):
                  -moz-border-radius: 6px 6px 0 0;
                       border-radius: 6px 6px 0 0;
             }
-            
+
             .container > footer p {
                 text-align: center;
             }
-            
+
             .container {
               width: 820px;
             }
-            
+
             .content {
                 background-color: #fff;
                 padding: 20px;
@@ -133,7 +133,7 @@ if (count($issues) > 0):
                    -moz-box-shadow: 0 1px 3px rgba(0,0,0,.15);
                         box-shadow: 0 1px 3px rgba(0,0,0,.15);
             }
-            
+
             .page-header {
                 -webkit-border-radius: 6px 6px 0 0;
                    -moz-border-radius: 6px 6px 0 0;
@@ -142,33 +142,32 @@ if (count($issues) > 0):
                 padding: 20px 20px 10px;
                 margin: -20px -20px 20px;
             }
-            
+
             .content .span6,
             .content .span8 {
                 min-height: 500px;
             }
-            
+
             .content .span6 {
                 text-align: center;
                 margin-left: 0;
                 padding-left: 19px;
                 border-left: 1px solid #eee;
             }
-            
+
             .installer-option {
                 padding: 30px;
             }
-            
+
             .installer-option-desc {
                 padding: 30px;
                 border-bottom: 1px solid #eee;
             }
-            
+
             .topbar .btn {
                 border: 0;
             }
         </style>
-        
     </head>
     <body>
         <div class="container">
@@ -181,7 +180,7 @@ if (count($issues) > 0):
                                 <li class="dropdown" data-dropdown="dropdown">
                                 <a href="#" class="dropdown-toggle">Help</a>
                                 <ul class="dropdown-menu">
-                                <li><a href="http://sylius.org/docs">Documentation</a></li>
+                                <li><a href="http://sylius.org/docs/index.html">Documentation</a></li>
                                 <li><a href="http://groups.google.com/group/sylius">Mailing list</a></li>
                                 </ul>
                                 </li>
@@ -201,13 +200,13 @@ if (count($issues) > 0):
                 <?php endforeach; ?>
                 </div>
             <footer>
-            <p>&copy; <a href="http://sylius.org">Sylius</a>, 2011. Version... <strong>0.0.1</strong>.</p>
+            <p>&copy; <a href="http://sylius.org">Sylius</a>, 2011-2012.</p>
             </footer>
         </div>
     </body>
 </html>
 
-<?php 
+<?php
 
 exit;
 
@@ -223,7 +222,7 @@ require_once __DIR__.'/../sylius/autoload.php';
 // Require kernel.
 require_once __DIR__.'/../sylius/SyliusKernel.php';
 
-// Initialize kernel and run the application.
-$kernel = new \Sylius\SyliusKernel('installer', true);
+// Initialize kernel and run the application in installation environment.
+$kernel = new \Sylius\SyliusKernel('installation', true);
 $kernel->loadClassCache();
 $kernel->handle(Request::createFromGlobals())->send();
