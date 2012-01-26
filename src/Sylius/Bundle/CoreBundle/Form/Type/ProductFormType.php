@@ -12,7 +12,6 @@
 namespace Sylius\Bundle\CoreBundle\Form\Type;
 
 use Sylius\Bundle\AssortmentBundle\Form\Type\ProductFormType as BaseProductFormType;
-
 use Symfony\Component\Form\FormBuilder;
 
 /**
@@ -25,7 +24,7 @@ class ProductFormType extends BaseProductFormType
     public function buildForm(FormBuilder $builder, array $options)
     {
         parent::buildForm($builder, $options);
-        
+
         $builder
             ->add('category', 'sylius_catalog_category_choice', array(
                 'multiple'		=> false,
