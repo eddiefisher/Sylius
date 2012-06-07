@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__.'/../vendor/libraries/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
-
 /*
  * This file is part of the Sylius package.
  *
@@ -11,42 +9,21 @@ require __DIR__.'/../vendor/libraries/symfony/src/Symfony/Component/ClassLoader/
  * file that was distributed with this source code.
  */
 
-use Symfony\Component\ClassLoader\UniversalClassLoader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 
-// Autoloader.
+$loader = require_once __DIR__.'/../vendor/autoload.php';
 
-$loader = new UniversalClassLoader();
-
-$loader->registerNamespaces(array(
-	'Sylius'                          => array( __DIR__.'/../vendor/bundles', __DIR__.'/../src'),
-
-    'Symfony'                         => __DIR__.'/../vendor/libraries/symfony/src',
-    'Pagerfanta'                      => __DIR__.'/../vendor/libraries/pagerfanta/src',
-    'Doctrine\\Common'                => __DIR__.'/../vendor/libraries/doctrine-common/lib',
-    'Doctrine\\DBAL'                  => __DIR__.'/../vendor/libraries/doctrine-dbal/lib',
-    'Doctrine'                        => __DIR__.'/../vendor/libraries/doctrine/lib',
-	'Monolog'                         => __DIR__.'/../vendor/libraries/monolog/src',
-    'Metadata'                        => __DIR__.'/../vendor/libraries/metadata/src',
-
-    'Liip'                            => __DIR__.'/../vendor/bundles',
-    'WhiteOctober\PagerfantaBundle'   => __DIR__.'/../vendor/bundles',
-));
-
-$loader->registerPrefixes(array(
-    'Twig_Extensions_'                => __DIR__.'/../vendor/libraries/twig-extensions/lib',
-    'Twig_'                           => __DIR__.'/../vendor/libraries/twig/lib',
-));
-
-// Swiftmailer.
-require_once __DIR__.'/../vendor/libraries/swiftmailer/lib/classes/Swift.php'; 
-Swift::registerAutoload(__DIR__.'/../vendor/libraries/swiftmailer/lib/swift_init.php');
-
-// Intl stubs.
 if (!function_exists('intl_get_error_code')) {
-    require_once __DIR__.'/../vendor/libraries/symfony/src/Symfony/Component/Locale/Resources/stubs/functions.php';
-
-    $loader->registerPrefixFallbacks(array(__DIR__.'/../vendor/libraries/symfony/src/Symfony/Component/Locale/Resources/stubs'));
+    require_once __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/stubs/functions.php';
+    $loader->add(null, __DIR__.'/../vendor/symfony/symfony/src/Symfony/Component/Locale/Resources/stubs');
 }
 
-$loader->register();
+AnnotationRegistry::registerLoader(function($class) use ($loader) {
+    $loader->loadClass($class);
+    return class_exists($class, false);
+});
 
+AnnotationRegistry::registerFile(__DIR__.'/../vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/DoctrineAnnotations.php');
+
+require_once __DIR__.'/../vendor/swiftmailer/swiftmailer/lib/classes/Swift.php';
+Swift::registerAutoload(__DIR__.'/../vendor/swiftmailer/swiftmailer/lib/swift_init.php');
