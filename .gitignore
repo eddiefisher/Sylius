@@ -1,12 +1,9 @@
-public/bundles/
-sylius/phpunit.xml
 sylius/cache/*
 sylius/logs/*
-sylius/Resources/themes/Fluiderrro/*
-.buildpath
-.project
-.settings/
-vendor/
-composer.phar
-composer.lock
+sylius/phpunit.xml
 
+public/bundles/
+
+vendor/
+
+composer.phar
