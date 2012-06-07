@@ -1,26 +1,49 @@
 {
     "require": {
-        "php":             ">=5.3.2",
-        "symfony/symfony": ">=2.0.7,<2.1.0-dev",
-        "doctrine/orm":    ">=2.1.0,<2.2.0-dev",
-        "twig/extensions": "*",
+        "php": ">=5.3.2",
 
-        "symfony/assetic-bundle":          "*",
-        "white-october/pagerfanta-bundle": "*",
+        "doctrine/orm":     "2.2.2",
+        "symfony/symfony":  "2.*",
+        "twig/extensions":  "dev-master",
 
-        "sylius/addressing-bundle": "*",
-        "sylius/assortment-bundle": "*",
-        "sylius/catalog-bundle":    "*",
-        "sylius/cart-bundle":       "*",
-        "sylius/theming-bundle":    "*",
-        "sylius/sales-bundle":      "*",
-        "sylius/plugins-bundle":    "*",
-        "sylius/installer-bundle":  "*",
-        "sylius/guard-bundle":      "*",
-        "sylius/pricing-bundle":    "*",
-        "sylius/checkouts-bundle":  "*",
+        "avalanche123/imagine-bundle":         "dev-master",
+        "doctrine/doctrine-bundle":            "dev-master",
+        "doctrine/doctrine-fixtures-bundle":   "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "friendsofsymfony/rest-bundle":        "dev-master",
+        "friendsofsymfony/user-bundle":        "dev-master",
+        "knplabs/knp-markdown-bundle":         "dev-master",
+        "knplabs/knp-menu-bundle":             "dev-master",
+        "sensio/distribution-bundle":          "dev-master",
+        "stof/doctrine-extensions-bundle":     "dev-master",
+        "sylius/addressing-bundle":            "dev-master",
+        "sylius/assortment-bundle":            "dev-master",
+        "sylius/blogger-bundle":               "dev-master",
+        "sylius/cart-bundle":                  "dev-master",
+        "sylius/categorizer-bundle":           "dev-master",
+        "sylius/sales-bundle":                 "dev-master",
+        "sylius/inventory-bundle":             "dev-master",
+        "symfony/assetic-bundle":              "dev-master",
+        "symfony/monolog-bundle":              "dev-master",
+        "symfony/swiftmailer-bundle":          "dev-master",
     },
-
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "symfony-app-dir": "sylius",
+        "symfony-web-dir": "public"
+    },
     "autoload": {
         "psr-0": {
             "Sylius": "src/"
