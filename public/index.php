@@ -23,5 +23,5 @@ require_once __DIR__.'/../sylius/autoload.php';
 require_once __DIR__.'/../sylius/SyliusKernel.php';
 
 // Initialize kernel and run the application.
-$kernel = new \Sylius\SyliusKernel('production', false);
+$kernel = new \Sylius\SyliusKernel('live', false);
 $kernel->handle(Request::createFromGlobals())->send();

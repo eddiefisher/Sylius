@@ -23,6 +23,6 @@ require_once __DIR__.'/../sylius/autoload.php';
 require_once __DIR__.'/../sylius/SyliusKernel.php';
 
 // Initialize kernel and run the application.
-$kernel = new \Sylius\SyliusKernel('development', true);
+$kernel = new \Sylius\SyliusKernel('dev', true);
 $kernel->loadClassCache();
 $kernel->handle(Request::createFromGlobals())->send();

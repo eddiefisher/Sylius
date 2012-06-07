@@ -17,7 +17,6 @@ use Symfony\Component\HttpKernel\Debug\ErrorHandler;
 use Symfony\Component\HttpKernel\Debug\ExceptionHandler;
 use Symfony\Component\HttpKernel\Kernel;
 
-
 /**
  * Sylius kernel.
  * Powered by Symfony2.
@@ -27,39 +26,45 @@ use Symfony\Component\HttpKernel\Kernel;
 class SyliusKernel extends Kernel
 {
     /**
-     * Register bundles in kernel.
+     * {@inheritdoc}
      */
     public function registerBundles()
     {
         $bundles = array(
-
-            /*
-             * Third party bundles.
-             */
-            new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new \Symfony\Bundle\TwigBundle\TwigBundle(),
-            new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
-            new \Symfony\Bundle\MonologBundle\MonologBundle(),
+            new \Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
             new \Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new \FOS\RestBundle\FOSRestBundle(),
+            new \FOS\UserBundle\FOSUserBundle(),
+            new \JMS\SerializerBundle\JMSSerializerBundle($this),
+            new \Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new \Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new \Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new \Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+            new \Symfony\Bundle\MonologBundle\MonologBundle(),
+            new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new \Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
+            new \Symfony\Bundle\TwigBundle\TwigBundle(),
             new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 
             /*
              * Sylius bundles.
              */
-            new \Sylius\Bundle\CoreBundle\SyliusCoreBundle(),
-            new \Sylius\Bundle\CatalogBundle\SyliusCatalogBundle(),
+            new \Sylius\Bundle\AddressingBundle\SyliusAddressingBundle(),
             new \Sylius\Bundle\AssortmentBundle\SyliusAssortmentBundle(),
+            new \Sylius\Bundle\BloggerBundle\SyliusBloggerBundle(),
             new \Sylius\Bundle\CartBundle\SyliusCartBundle(),
-            new \Sylius\Bundle\ThemingBundle\SyliusThemingBundle(),
+            new \Sylius\Bundle\CategorizerBundle\SyliusCategorizerBundle(),
+            new \Sylius\Bundle\InventoryBundle\SyliusInventoryBundle(),
             new \Sylius\Bundle\SalesBundle\SyliusSalesBundle(),
-            new \Sylius\Bundle\InstallerBundle\SyliusInstallerBundle(),
-            new \Sylius\Bundle\CheckoutsBundle\SyliusCheckoutsBundle(),
-            new \Sylius\Bundle\PricingBundle\SyliusPricingBundle()
 
+            /*
+             * Core.
+             */
+            new \Sylius\Bundle\CoreBundle\SyliusCoreBundle()
         );
-
-        $bundles[] = new \Sylius\Bundle\PluginsBundle\SyliusPluginsBundle($this, $bundles);
 
         if ($this->isDebug()) {
             $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
@@ -69,7 +74,7 @@ class SyliusKernel extends Kernel
     }
 
     /**
-     * Init kernel.
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -88,7 +93,7 @@ class SyliusKernel extends Kernel
     }
 
     /**
-     * Register root dir.
+     * {@inheritdoc}
      */
     public function registerRootDir()
     {
@@ -96,10 +101,14 @@ class SyliusKernel extends Kernel
     }
 
     /**
-     * Register dependency injection container configuration.
+     * {@inheritdoc}
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/container/'.$this->getEnvironment().'.yml');
+        $base = __DIR__.'/config/container/'.$this->getEnvironment();
+        if (file_exists($base.'.local.yml')) {
+            $base .= '.local';
+        }
+        $loader->load($base.'.yml');
     }
 }

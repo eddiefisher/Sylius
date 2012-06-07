@@ -1,4 +1,5 @@
 #!/usr/bin/env php
+
 <?php
 
 /*
@@ -17,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
 $input = new ArgvInput();
-$environment = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'development');
+$environment = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
 $debug = !$input->hasParameterOption(array('--no-debug', ''));
 
 $kernel = new Sylius\SyliusKernel($environment, $debug);
